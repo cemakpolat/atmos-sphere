@@ -139,10 +139,10 @@ describe('Keyboard Shortcuts', () => {
   describe('CSS class toggling', () => {
     it('should toggle d-none class on search container', () => {
       expect(searchBarContainer.classList.contains('d-none')).toBe(true);
-      
+
       searchBarContainer.classList.remove('d-none');
       expect(searchBarContainer.classList.contains('d-none')).toBe(false);
-      
+
       searchBarContainer.classList.add('d-none');
       expect(searchBarContainer.classList.contains('d-none')).toBe(true);
     });
@@ -150,7 +150,7 @@ describe('Keyboard Shortcuts', () => {
     it('should toggle display style on autocomplete', () => {
       autocompleteDropdown.style.display = 'block';
       expect(autocompleteDropdown.style.display).toBe('block');
-      
+
       autocompleteDropdown.style.display = 'none';
       expect(autocompleteDropdown.style.display).toBe('none');
     });

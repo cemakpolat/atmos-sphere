@@ -1,6 +1,6 @@
 /**
  * HistoryService - Single Responsibility: Handle historical weather data
- * 
+ *
  * This service manages fetching and displaying historical weather data.
  * It follows the Single Responsibility Principle by focusing solely on
  * historical data operations.

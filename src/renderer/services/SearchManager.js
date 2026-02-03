@@ -1,6 +1,6 @@
 /**
  * SearchManager - Single Responsibility: Handle search and autocomplete operations
- * 
+ *
  * This service manages city search and autocomplete functionality.
  * It follows the Single Responsibility Principle by focusing solely on
  * search-related operations.
@@ -153,7 +153,8 @@ export class SearchManager {
       SearchManager.#autocompleteDropdown.appendChild(suggestion);
     });
 
-    SearchManager.#autocompleteDropdown.style.display = filteredCities.length > 0 ? 'block' : 'none';
+    SearchManager.#autocompleteDropdown.style.display =
+      filteredCities.length > 0 ? 'block' : 'none';
   }
 
   /**
@@ -162,7 +163,7 @@ export class SearchManager {
    */
   static async search() {
     const city = SearchManager.#searchInput?.value.trim();
-    
+
     if (!city || city === SearchManager.#lastSearchTerm) {
       return null;
     }

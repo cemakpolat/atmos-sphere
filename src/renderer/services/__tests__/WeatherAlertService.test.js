@@ -223,16 +223,11 @@ describe('WeatherAlertService', () => {
 
   describe('native notification integration', () => {
     it('should send native notification via electron', async () => {
-      const mockAlerts = [
-        { type: 'storm', message: 'Severe thunderstorm warning' },
-      ];
+      const mockAlerts = [{ type: 'storm', message: 'Severe thunderstorm warning' }];
 
       weatherUtils.detectSevereWeather.mockReturnValue(mockAlerts);
 
-      await WeatherAlertService.checkAndShowAlerts(
-        { current_weather: {} },
-        'London'
-      );
+      await WeatherAlertService.checkAndShowAlerts({ current_weather: {} }, 'London');
 
       expect(mockElectron.showNotification).toHaveBeenCalledWith(
         'Weather Alert',
@@ -243,9 +238,7 @@ describe('WeatherAlertService', () => {
     it('should work without electron (browser mode)', async () => {
       WeatherAlertService.initialize(null);
 
-      const mockAlerts = [
-        { type: 'storm', message: 'Storm warning' },
-      ];
+      const mockAlerts = [{ type: 'storm', message: 'Storm warning' }];
 
       weatherUtils.detectSevereWeather.mockReturnValue(mockAlerts);
 

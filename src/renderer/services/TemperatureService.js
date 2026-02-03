@@ -1,6 +1,6 @@
 /**
  * TemperatureService - Single Responsibility: Handle temperature conversions and formatting
- * 
+ *
  * This service manages all temperature-related operations including conversion
  * between units and formatting for display. It follows the Single Responsibility
  * Principle by focusing solely on temperature operations.

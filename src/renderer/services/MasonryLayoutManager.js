@@ -1,6 +1,6 @@
 /**
  * MasonryLayoutManager - Single Responsibility: Handle masonry grid layout
- * 
+ *
  * This service manages the masonry layout for city cards.
  * It follows the Single Responsibility Principle by focusing solely on
  * layout calculations and positioning.

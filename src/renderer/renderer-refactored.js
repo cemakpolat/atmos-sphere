@@ -1,7 +1,7 @@
 /* global process */
 /**
  * Renderer - Main Application Orchestrator
- * 
+ *
  * This file serves as the main orchestrator that coordinates all services.
  * Following the SOLID principles:
  * - Single Responsibility: Each service handles one concern
@@ -9,7 +9,7 @@
  * - Liskov Substitution: Services can be swapped with compatible implementations
  * - Interface Segregation: Each service exposes only necessary methods
  * - Dependency Inversion: High-level modules depend on abstractions
- * 
+ *
  * This file is now under 500 lines (reduced from 2650+) by delegating
  * responsibilities to specialized services.
  */
@@ -156,7 +156,9 @@ async function handleGeolocate() {
         DynamicBackgroundManager.update(citiesContainer);
       }
 
-      ToastService.success(`Added your current location: ${cityInfo.name}, ${cityInfo.country_code}`);
+      ToastService.success(
+        `Added your current location: ${cityInfo.name}, ${cityInfo.country_code}`
+      );
       await WeatherAlertService.checkAndShowAlerts(weatherData, cityInfo.name);
     } else {
       ToastService.error('Failed to fetch weather for your location');
@@ -250,14 +252,14 @@ async function loadSettings() {
     console.log('All cities loaded, applying masonry layout...');
     MasonryLayoutManager.scheduleUpdate(200);
     AutoRefreshManager.start();
-    
+
     // Update dynamic background if enabled
     if (DynamicBackgroundManager.isEnabled()) {
       setTimeout(() => {
         DynamicBackgroundManager.update(citiesContainer);
       }, 500);
     }
-    
+
     hideLoadingSpinner();
   } catch (error) {
     console.error('Error loading settings:', error);
@@ -381,7 +383,7 @@ async function loadSettingsUI() {
     const dynamicBgPrefs = settings.dynamicBackgrounds || { enabled: false };
     if (dynamicBgToggle) {
       dynamicBgToggle.checked = dynamicBgPrefs.enabled;
-      
+
       // Apply current state
       if (dynamicBgPrefs.enabled) {
         DynamicBackgroundManager.enable();
@@ -505,7 +507,7 @@ function setupSettingsEventListeners() {
     dynamicBgToggle.addEventListener('change', async () => {
       const enabled = dynamicBgToggle.checked;
       await SettingsManager.setDynamicBackgrounds({ enabled });
-      
+
       if (enabled) {
         DynamicBackgroundManager.enable();
         ToastService.success('Dynamic backgrounds enabled', 2000);
@@ -520,7 +522,13 @@ function setupSettingsEventListeners() {
 
   // Weather alerts toggles
   document.getElementById('alerts-enabled').addEventListener('change', saveAlertPreferences);
-  ['alert-thunderstorm', 'alert-heavy-rain', 'alert-heavy-snow', 'alert-extreme-temp', 'alert-high-precip'].forEach(id => {
+  [
+    'alert-thunderstorm',
+    'alert-heavy-rain',
+    'alert-heavy-snow',
+    'alert-extreme-temp',
+    'alert-high-precip',
+  ].forEach(id => {
     document.getElementById(id).addEventListener('change', saveAlertPreferences);
   });
 
@@ -602,19 +610,24 @@ async function saveOpenWeatherMapApiKey() {
   const apiKey = apiKeyInput.value.trim();
 
   if (!apiKey) {
-    statusDiv.innerHTML = '<small class="text-warning"><i class="fas fa-exclamation-triangle me-1"></i>Please enter a valid API key</small>';
+    statusDiv.innerHTML =
+      '<small class="text-warning"><i class="fas fa-exclamation-triangle me-1"></i>Please enter a valid API key</small>';
     ToastService.warning('Please enter a valid API key');
     return;
   }
 
   try {
     await SettingsManager.setApiKey('openweathermap', apiKey);
-    statusDiv.innerHTML = '<small class="text-success"><i class="fas fa-check-circle me-1"></i>API key saved!</small>';
+    statusDiv.innerHTML =
+      '<small class="text-success"><i class="fas fa-check-circle me-1"></i>API key saved!</small>';
     ToastService.success('OpenWeatherMap API key saved successfully', 3000);
-    setTimeout(() => { statusDiv.innerHTML = ''; }, 5000);
+    setTimeout(() => {
+      statusDiv.innerHTML = '';
+    }, 5000);
   } catch (error) {
     console.error('Error saving API key:', error);
-    statusDiv.innerHTML = '<small class="text-danger"><i class="fas fa-exclamation-circle me-1"></i>Failed to save API key</small>';
+    statusDiv.innerHTML =
+      '<small class="text-danger"><i class="fas fa-exclamation-circle me-1"></i>Failed to save API key</small>';
     ToastService.error('Failed to save API key');
   }
 }
@@ -629,9 +642,12 @@ async function clearOpenWeatherMapApiKey() {
   try {
     await SettingsManager.setApiKey('openweathermap', '');
     apiKeyInput.value = '';
-    statusDiv.innerHTML = '<small class="text-success"><i class="fas fa-check-circle me-1"></i>API key cleared!</small>';
+    statusDiv.innerHTML =
+      '<small class="text-success"><i class="fas fa-check-circle me-1"></i>API key cleared!</small>';
     ToastService.success('OpenWeatherMap API key cleared', 2000);
-    setTimeout(() => { statusDiv.innerHTML = ''; }, 3000);
+    setTimeout(() => {
+      statusDiv.innerHTML = '';
+    }, 3000);
   } catch (error) {
     console.error('Error clearing API key:', error);
     ToastService.error('Failed to clear API key');
@@ -688,7 +704,7 @@ async function importSettings(event) {
   try {
     await SettingsManager.importSettings(file);
     ToastService.success('Settings imported successfully! Reloading...', 2000);
-    
+
     // Reload the app to apply new settings
     setTimeout(() => {
       window.location.reload();
@@ -706,13 +722,13 @@ async function resetSettings() {
   const confirmed = confirm(
     'Are you sure you want to reset all settings to defaults? This will remove all saved cities and preferences.'
   );
-  
+
   if (!confirmed) return;
 
   try {
     await SettingsManager.resetToDefaults();
     ToastService.success('Settings reset to defaults! Reloading...', 2000);
-    
+
     // Reload the app
     setTimeout(() => {
       window.location.reload();
@@ -799,14 +815,18 @@ function setupKeyboardShortcuts() {
 }
 
 // --- Debug Error Handler ---
-window.addEventListener('error', event => {
-  if (event.message && event.message.includes('401')) {
-    console.error('[Debug] 401 error detected:', {
-      message: event.message,
-      filename: event.filename,
-    });
-  }
-}, true);
+window.addEventListener(
+  'error',
+  event => {
+    if (event.message && event.message.includes('401')) {
+      console.error('[Debug] 401 error detected:', {
+        message: event.message,
+        filename: event.filename,
+      });
+    }
+  },
+  true
+);
 
 // --- Application Bootstrap ---
 

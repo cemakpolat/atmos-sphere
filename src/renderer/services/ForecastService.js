@@ -1,6 +1,6 @@
 /**
  * ForecastService - Single Responsibility: Handle forecast data generation
- * 
+ *
  * This service manages forecast data formatting and HTML generation.
  * It follows the Single Responsibility Principle by focusing solely on
  * forecast-related operations.
@@ -63,7 +63,7 @@ export class ForecastService {
       weathercode,
       precipitation_probability_max,
     } = dailyData;
-    
+
     const forecastItems = [];
     const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 

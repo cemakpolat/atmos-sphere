@@ -51,7 +51,7 @@ describe('Electron Main Process Tests', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-    
+
     // Import mocked modules
     electron = require('electron');
     storage = require('../../storage');
@@ -95,7 +95,7 @@ describe('Electron Main Process Tests', () => {
     it('should set up geolocation permissions', () => {
       const handler = mockBrowserWindow.webContents.session.setPermissionRequestHandler;
 
-      handler.mockImplementation((callback) => {
+      handler.mockImplementation(callback => {
         // Test the permission handler
         const testCallback = jest.fn();
         callback(null, 'geolocation', testCallback);
@@ -160,7 +160,7 @@ describe('Electron Main Process Tests', () => {
 
       mockIpcMain.handle.mockImplementation((channel, handler) => {
         if (channel === 'read-settings') {
-          return handler().then((result) => {
+          return handler().then(result => {
             expect(result).toEqual(mockSettings);
           });
         }
@@ -179,7 +179,7 @@ describe('Electron Main Process Tests', () => {
 
       mockIpcMain.handle.mockImplementation((channel, handler) => {
         if (channel === 'write-settings') {
-          return handler(null, newSettings).then((result) => {
+          return handler(null, newSettings).then(result => {
             expect(result).toBe(true);
           });
         }

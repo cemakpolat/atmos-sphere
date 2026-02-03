@@ -40,7 +40,7 @@ describe('SettingsManager', () => {
         temperatureUnit: 'fahrenheit',
         theme: 'dark',
       };
-      
+
       global.window.electron.readSettings.mockResolvedValue(mockSettings);
 
       const settings = await SettingsManager.read(false); // Don't use cache
@@ -53,7 +53,7 @@ describe('SettingsManager', () => {
       global.window.electron.readSettings.mockRejectedValue(new Error('Storage error'));
 
       const settings = await SettingsManager.read(false);
-      
+
       // Should return default settings on error
       expect(settings).toBeDefined();
       expect(settings.temperatureUnit).toBeDefined();
@@ -66,7 +66,7 @@ describe('SettingsManager', () => {
         temperatureUnit: 'fahrenheit',
         theme: 'dark',
       };
-      
+
       global.window.electron.writeSettings.mockResolvedValue();
 
       const result = await SettingsManager.write(newSettings);

@@ -41,20 +41,23 @@ import { WeatherAnimationManager } from './services/animations/WeatherAnimationM
 // --- DOM Elements ---
 // Lazily resolve DOM elements via proxies so tests can set up JSDOM in beforeEach
 function createLazyElement(id) {
-  return new Proxy({}, {
-    get(_, prop) {
-      const el = typeof document !== 'undefined' ? document.getElementById(id) : null;
-      if (!el) return undefined;
-      const val = el[prop];
-      return typeof val === 'function' ? val.bind(el) : val;
-    },
-    set(_, prop, value) {
-      const el = typeof document !== 'undefined' ? document.getElementById(id) : null;
-      if (!el) return true;
-      el[prop] = value;
-      return true;
-    },
-  });
+  return new Proxy(
+    {},
+    {
+      get(_, prop) {
+        const el = typeof document !== 'undefined' ? document.getElementById(id) : null;
+        if (!el) return undefined;
+        const val = el[prop];
+        return typeof val === 'function' ? val.bind(el) : val;
+      },
+      set(_, prop, value) {
+        const el = typeof document !== 'undefined' ? document.getElementById(id) : null;
+        if (!el) return true;
+        el[prop] = value;
+        return true;
+      },
+    }
+  );
 }
 
 const citiesContainer = createLazyElement('cities');

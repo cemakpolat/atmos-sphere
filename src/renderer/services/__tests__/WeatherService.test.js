@@ -71,7 +71,7 @@ describe('GeolocationService', () => {
       };
 
       navigator.geolocation = {
-        getCurrentPosition: jest.fn((success) => success(mockPosition)),
+        getCurrentPosition: jest.fn(success => success(mockPosition)),
       };
 
       const result = await GeolocationService.getCurrentPosition();
@@ -92,7 +92,7 @@ describe('GeolocationService', () => {
       };
 
       navigator.geolocation = {
-        getCurrentPosition: jest.fn((success, error) => 
+        getCurrentPosition: jest.fn((success, error) =>
           error({ message: 'User denied geolocation' })
         ),
       };
@@ -116,7 +116,7 @@ describe('WeatherService', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-    
+
     mockProvider = {
       geocodeCity: jest.fn(),
       getWeatherByCoordinates: jest.fn(),
@@ -126,7 +126,7 @@ describe('WeatherService', () => {
     };
 
     WeatherProviderFactory.createProvider.mockReturnValue(mockProvider);
-    
+
     // Create instance
     weatherService = new WeatherService('open-meteo');
   });
@@ -249,7 +249,9 @@ describe('WeatherService', () => {
     it('should handle network errors', async () => {
       mockProvider.geocodeCity.mockRejectedValue(new Error('Network error'));
 
-      await expect(weatherService.getWeatherByCity('London')).rejects.toThrow('Weather data not available for London');
+      await expect(weatherService.getWeatherByCity('London')).rejects.toThrow(
+        'Weather data not available for London'
+      );
     });
 
     it('should handle invalid coordinates', async () => {

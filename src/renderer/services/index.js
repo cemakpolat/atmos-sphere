@@ -1,6 +1,6 @@
 /**
  * Services Index - Central export point for all services
- * 
+ *
  * This file provides a clean import path for all modular services.
  * Following the Interface Segregation and Dependency Inversion principles,
  * consumers can import only what they need.

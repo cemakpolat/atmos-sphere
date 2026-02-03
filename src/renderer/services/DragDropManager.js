@@ -1,6 +1,6 @@
 /**
  * DragDropManager - Single Responsibility: Handle drag and drop operations
- * 
+ *
  * This service manages drag and drop functionality for city cards.
  * It follows the Single Responsibility Principle by focusing solely on
  * drag and drop operations.
@@ -55,9 +55,7 @@ export class DragDropManager {
    */
   static #handleDragStart(card, e) {
     DragDropManager.#draggedCard = card;
-    DragDropManager.#draggedIndex = Array.from(
-      DragDropManager.#container.children
-    ).indexOf(card);
+    DragDropManager.#draggedIndex = Array.from(DragDropManager.#container.children).indexOf(card);
     card.classList.add('dragging');
     e.dataTransfer.effectAllowed = 'move';
     e.dataTransfer.setData('text/html', card.innerHTML);
@@ -87,10 +85,7 @@ export class DragDropManager {
 
       if (DragDropManager.#draggedIndex < currentIndex) {
         // Insert after current card
-        DragDropManager.#container.insertBefore(
-          DragDropManager.#draggedCard,
-          card.nextSibling
-        );
+        DragDropManager.#container.insertBefore(DragDropManager.#draggedCard, card.nextSibling);
       } else {
         // Insert before current card
         DragDropManager.#container.insertBefore(DragDropManager.#draggedCard, card);

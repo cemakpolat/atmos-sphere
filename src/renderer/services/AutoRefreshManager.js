@@ -1,6 +1,6 @@
 /**
  * AutoRefreshManager - Single Responsibility: Handle auto-refresh functionality
- * 
+ *
  * This service manages automatic weather data refresh.
  * It follows the Single Responsibility Principle by focusing solely on
  * auto-refresh operations.
@@ -69,26 +69,23 @@ export class AutoRefreshManager {
    */
   static async setInterval(minutes) {
     AutoRefreshManager.#intervalMs = minutes * 60 * 1000;
-    
+
     // Save to settings
     await SettingsManager.setAutoRefreshInterval(minutes);
 
     // Restart if currently running
     if (AutoRefreshManager.#isRunning) {
       AutoRefreshManager.stop();
-      
+
       AutoRefreshManager.#intervalId = setInterval(() => {
         console.log('Auto-refreshing weather data...');
         AutoRefreshManager.#executeRefresh();
       }, AutoRefreshManager.#intervalMs);
-      
+
       AutoRefreshManager.#isRunning = true;
       console.log(`Auto-refresh interval updated to: ${minutes} minutes`);
-      
-      ToastService.success(
-        `Auto-refresh set to ${minutes} minute${minutes > 1 ? 's' : ''}`,
-        2000
-      );
+
+      ToastService.success(`Auto-refresh set to ${minutes} minute${minutes > 1 ? 's' : ''}`, 2000);
     }
   }
 

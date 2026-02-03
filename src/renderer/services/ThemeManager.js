@@ -1,6 +1,6 @@
 /**
  * ThemeManager - Single Responsibility: Handle theme management
- * 
+ *
  * This service manages application theming including dark/light modes and color themes.
  * It follows the Single Responsibility Principle by focusing solely on
  * theme-related operations.
@@ -102,7 +102,7 @@ export class ThemeManager {
   static async toggleMode() {
     const newMode = ThemeManager.#currentMode === 'dark' ? 'light' : 'dark';
     ThemeManager.applyMode(newMode);
-    
+
     try {
       await SettingsManager.setThemeMode(newMode);
       ToastService.success(`${newMode === 'dark' ? 'Dark' : 'Light'} mode enabled`, 2000);
@@ -148,7 +148,7 @@ export class ThemeManager {
    */
   static async saveAndApply(themeName) {
     ThemeManager.apply(themeName);
-    
+
     try {
       await SettingsManager.setTheme(themeName);
       console.log('Theme saved:', themeName);
@@ -158,8 +158,8 @@ export class ThemeManager {
       ToastService.error('Failed to save theme');
     }
   }
-  /** 
-  * Sets up theme option click handlers.
+  /**
+   * Sets up theme option click handlers.
    */
   static setupThemeOptions() {
     const themeOptions = document.querySelectorAll('.theme-option');

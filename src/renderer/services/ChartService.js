@@ -1,6 +1,6 @@
 /**
  * ChartService - Single Responsibility: Handle chart rendering and data visualization
- * 
+ *
  * This service manages the creation and rendering of temperature charts.
  * It follows the Single Responsibility Principle by focusing solely on
  * chart-related operations.
@@ -197,7 +197,7 @@ export class ChartService {
   static #drawLegend(ctx, padding) {
     ctx.fillStyle = '#fff';
     ctx.font = 'bold 12px Arial';
-    
+
     ctx.fillStyle = '#ffeb3b';
     ctx.fillRect(padding, 5, 15, 4);
     ctx.fillStyle = '#fff';

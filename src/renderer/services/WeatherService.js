@@ -115,7 +115,9 @@ export class WeatherService {
     this.#provider = WeatherProviderFactory.createProvider(providerType);
     try {
       if (this.#provider && typeof this.#provider.getProviderName === 'function') {
-        console.log(`WeatherService initialized with provider: ${this.#provider.getProviderName()}`);
+        console.log(
+          `WeatherService initialized with provider: ${this.#provider.getProviderName()}`
+        );
       } else {
         console.log('WeatherService initialized with provider: (unknown)');
       }

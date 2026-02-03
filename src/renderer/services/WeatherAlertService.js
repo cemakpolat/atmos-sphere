@@ -1,6 +1,6 @@
 /**
  * WeatherAlertService - Single Responsibility: Handle weather alerts
- * 
+ *
  * This service manages weather alert detection and notification.
  * It follows the Single Responsibility Principle by focusing solely on
  * alert-related operations.
@@ -36,10 +36,8 @@ export class WeatherAlertService {
     }
 
     // Detect severe weather
-    const alerts = detectSevereWeather(
-      weatherData,
-      cityName,
-      temp => TemperatureService.format(temp)
+    const alerts = detectSevereWeather(weatherData, cityName, temp =>
+      TemperatureService.format(temp)
     );
 
     // Filter based on preferences
@@ -51,7 +49,7 @@ export class WeatherAlertService {
       if (WeatherAlertService.#electron) {
         WeatherAlertService.#electron.showNotification('Weather Alert', alert.message);
       }
-      
+
       // In-app toast notification
       ToastService.warning(alert.message, 5000);
     });

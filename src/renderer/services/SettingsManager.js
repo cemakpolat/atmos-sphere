@@ -1,6 +1,6 @@
 /**
  * SettingsManager - Single Responsibility: Handle all application settings operations
- * 
+ *
  * This service manages reading, writing, and applying application settings.
  * It follows the Single Responsibility Principle by focusing solely on settings management.
  * It uses Dependency Inversion by depending on an electron abstraction.
@@ -313,7 +313,7 @@ export class SettingsManager {
       const settings = await SettingsManager.read(false);
       const dataStr = JSON.stringify(settings, null, 2);
       const dataBlob = new Blob([dataStr], { type: 'application/json' });
-      
+
       const url = URL.createObjectURL(dataBlob);
       const link = document.createElement('a');
       link.href = url;
@@ -322,7 +322,7 @@ export class SettingsManager {
       link.click();
       document.body.removeChild(link);
       URL.revokeObjectURL(url);
-      
+
       console.log('Settings exported successfully');
       return true;
     } catch (error) {
@@ -340,18 +340,18 @@ export class SettingsManager {
     try {
       const text = await file.text();
       const importedSettings = JSON.parse(text);
-      
+
       // Validate settings structure
       if (typeof importedSettings !== 'object' || importedSettings === null) {
         throw new Error('Invalid settings format');
       }
-      
+
       // Merge with defaults to ensure all required fields exist
       const validatedSettings = { ...SettingsManager.defaultSettings, ...importedSettings };
-      
+
       // Write the settings
       await SettingsManager.write(validatedSettings);
-      
+
       console.log('Settings imported successfully');
       return true;
     } catch (error) {

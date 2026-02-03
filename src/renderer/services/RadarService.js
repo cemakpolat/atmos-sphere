@@ -1,6 +1,6 @@
 /**
  * RadarService - Single Responsibility: Handle radar map rendering
- * 
+ *
  * This service manages the creation and rendering of weather radar maps.
  * It follows the Single Responsibility Principle by focusing solely on
  * radar map operations.
@@ -37,10 +37,7 @@ export class RadarService {
     }).addTo(map);
 
     // Add city marker
-    L.marker([latitude, longitude])
-      .addTo(map)
-      .bindPopup(`<b>${cityName}</b>`)
-      .openPopup();
+    L.marker([latitude, longitude]).addTo(map).bindPopup(`<b>${cityName}</b>`).openPopup();
 
     return map;
   }

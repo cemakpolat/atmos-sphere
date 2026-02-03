@@ -2,13 +2,14 @@
 
 A beautiful, feature-rich cross-platform Electron weather application that provides comprehensive weather information for cities worldwide with stunning animations and an intuitive interface.
 
-![atmos sphere app](./docs/atmossphere.png "atmos sphere app")
+![atmos sphere app](./docs/atmossphere.png 'atmos sphere app')
 
 ---
 
 ## ✨ Features
 
 ### 🌍 Core Weather Features
+
 - **Multi-City Management**: Add, remove, and track weather for multiple cities simultaneously
 - **Autocomplete Search**: Smart city search with real-time suggestions
 - **7-Day Forecast**: View detailed 7-day weather outlook with hourly and daily views
@@ -23,15 +24,18 @@ A beautiful, feature-rich cross-platform Electron weather application that provi
 - **Temperature Units**: Toggle between Celsius and Fahrenheit
 
 ### 🗺️ Weather Radar & Maps
+
 - **Interactive Maps**: Integrated Leaflet maps with city markers
 - **Weather Overlays**: Toggle precipitation, clouds, and temperature layers
 - **Zoom & Pan**: Full map controls for detailed exploration
 
 ### 📍 Geolocation
+
 - **Auto-Detect Location**: Automatically detect and add your current location
 - **Location Badge**: Visual indicator for current location cities
 
 ### 🎨 Visual Experience
+
 - **Weather-Based Animations**: Dynamic background animations that match weather conditions:
   - ☀️ Sunny - Gradient with light beams
   - 🌧️ Rainy - Rain animation with droplets
@@ -44,6 +48,7 @@ A beautiful, feature-rich cross-platform Electron weather application that provi
 - **Masonry Layout**: Optimized card positioning for better space usage
 
 ### 🔔 Alerts & Notifications
+
 - **Weather Alerts**: Automatic detection of severe weather conditions
 - **Native Notifications**: System notifications for weather alerts
 - **Customizable Alerts**: Configure which alert types you want to receive:
@@ -54,6 +59,7 @@ A beautiful, feature-rich cross-platform Electron weather application that provi
   - High precipitation
 
 ### ⚙️ Settings & Customization
+
 - **Auto-Refresh**: Configurable auto-refresh interval (1-60 minutes)
 - **Animation Controls**: Enable/disable weather animations
 - **Alert Preferences**: Fine-tune notification settings
@@ -61,12 +67,14 @@ A beautiful, feature-rich cross-platform Electron weather application that provi
 - **Persistent Settings**: All preferences saved across sessions
 
 ### ⌨️ Keyboard Shortcuts
+
 - `Ctrl/Cmd + F` - Focus search bar
 - `Ctrl/Cmd + R` - Refresh all cities
 - `Ctrl/Cmd + N` - Add new city
 - `Escape` - Close search/autocomplete
 
 ### 🔄 Additional Features
+
 - **Manual Refresh**: Refresh individual cities or all at once
 - **Toast Notifications**: In-app notifications for actions and errors
 - **Custom Title Bar**: Headless window with custom controls
@@ -91,7 +99,9 @@ A beautiful, feature-rich cross-platform Electron weather application that provi
 ## 📦 Installation
 
 ### Download Pre-built Binaries
+
 Download the latest release for your platform from the [Releases](https://github.com/cemakpolat/atmos-sphere/releases) page:
+
 - **Windows**: `atmos-sphere-Setup-*.exe`
 - **macOS**: `atmos-sphere-*.dmg`
 - **Linux**: `atmos-sphere-*.AppImage`
@@ -99,23 +109,28 @@ Download the latest release for your platform from the [Releases](https://github
 ### Build from Source
 
 1. **Clone the repository**:
+
    ```bash
-   
+
    git clone https://github.com/cemakpolat/atmos-sphere.git
    cd atmos-sphere
-  ```
-
-2. **Install dependencies**:
-   ```bash
-   npm install
    ```
 
+````
+
+2. **Install dependencies**:
+ ```bash
+ npm install
+````
+
 3. **Run in development mode**:
+
    ```bash
    npm start
    ```
 
 4. **Build for production**:
+
    ```bash
    # Build for all platforms
    npm run build

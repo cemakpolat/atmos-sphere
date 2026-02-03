@@ -80,7 +80,7 @@ describe('Weather App E2E Tests', () => {
   describe('User Journey: Adding Cities', () => {
     it('should add a city card when search is successful', () => {
       const container = document.getElementById('cities-container');
-      
+
       // Create a mock city card
       const card = document.createElement('div');
       card.className = 'city-card';
@@ -100,7 +100,7 @@ describe('Weather App E2E Tests', () => {
       const container = document.getElementById('cities-container');
       const cities = ['London', 'Paris', 'Berlin'];
 
-      cities.forEach((city) => {
+      cities.forEach(city => {
         const card = document.createElement('div');
         card.className = 'city-card';
         card.innerHTML = `<h3 class="city-name">${city}</h3>`;
@@ -121,7 +121,7 @@ describe('Weather App E2E Tests', () => {
 
       // Try to add London again
       const existingCity = container.querySelector('[data-city="London"]');
-      
+
       if (!existingCity) {
         const card2 = document.createElement('div');
         card2.className = 'city-card';
@@ -275,7 +275,7 @@ describe('Weather App E2E Tests', () => {
       const searchInput = document.getElementById('city-search');
       let submitted = false;
 
-      searchInput.addEventListener('keypress', (e) => {
+      searchInput.addEventListener('keypress', e => {
         if (e.key === 'Enter') {
           submitted = true;
         }
@@ -290,10 +290,10 @@ describe('Weather App E2E Tests', () => {
 
     it('should navigate autocomplete with arrow keys', () => {
       const dropdown = document.getElementById('autocomplete-dropdown');
-      
+
       // Add suggestions
       const suggestions = ['London', 'Los Angeles', 'Lisbon'];
-      suggestions.forEach((city) => {
+      suggestions.forEach(city => {
         const item = document.createElement('div');
         item.className = 'autocomplete-item';
         item.textContent = city;
@@ -313,7 +313,7 @@ describe('Weather App E2E Tests', () => {
   describe('User Journey: Responsive Design', () => {
     it('should adapt layout for mobile screens', () => {
       const container = document.getElementById('cities-container');
-      
+
       // Simulate mobile viewport
       Object.defineProperty(window, 'innerWidth', {
         writable: true,
@@ -365,7 +365,7 @@ describe('Weather App E2E Tests', () => {
 
     it('should have keyboard accessible buttons', () => {
       const searchButton = document.getElementById('search-button');
-      
+
       expect(searchButton.tabIndex).toBeGreaterThanOrEqual(0);
     });
 

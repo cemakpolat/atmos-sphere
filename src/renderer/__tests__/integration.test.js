@@ -26,7 +26,8 @@ jest.mock('../services/StorageService', () => ({
   StorageService: {
     save: jest.fn((key, value) => {
       try {
-        const gs = (typeof global !== 'undefined' && global.sessionStorage) ? global.sessionStorage : null;
+        const gs =
+          typeof global !== 'undefined' && global.sessionStorage ? global.sessionStorage : null;
         if (gs && typeof gs.setItem === 'function') {
           gs.setItem(key, JSON.stringify(value));
         }
@@ -36,9 +37,10 @@ jest.mock('../services/StorageService', () => ({
         return false;
       }
     }),
-    get: jest.fn((key) => {
+    get: jest.fn(key => {
       try {
-        const gs = (typeof global !== 'undefined' && global.sessionStorage) ? global.sessionStorage : null;
+        const gs =
+          typeof global !== 'undefined' && global.sessionStorage ? global.sessionStorage : null;
         if (gs && typeof gs.getItem === 'function') {
           const data = gs.getItem(key);
           return data ? JSON.parse(data) : mockStorage.get(key);
@@ -251,9 +253,9 @@ describe('Weather App Integration Tests', () => {
       // Mock detectSevereWeather
       const detectSevereWeather = require('../utils/weatherUtils').detectSevereWeather;
       if (detectSevereWeather) {
-        jest.spyOn(require('../utils/weatherUtils'), 'detectSevereWeather').mockReturnValue([
-          { type: 'storm', message: 'Severe thunderstorm in London' },
-        ]);
+        jest
+          .spyOn(require('../utils/weatherUtils'), 'detectSevereWeather')
+          .mockReturnValue([{ type: 'storm', message: 'Severe thunderstorm in London' }]);
       }
 
       const alerts = await WeatherAlertService.checkAndShowAlerts(weatherData, 'London');
@@ -266,7 +268,7 @@ describe('Weather App Integration Tests', () => {
     it('should handle multiple cities simultaneously', async () => {
       const cities = ['London', 'Paris', 'Berlin', 'Madrid'];
 
-      WeatherService.fetchWeatherByCityName = jest.fn().mockImplementation((city) =>
+      WeatherService.fetchWeatherByCityName = jest.fn().mockImplementation(city =>
         Promise.resolve({
           name: city,
           country_code: 'XX',
@@ -280,7 +282,7 @@ describe('Weather App Integration Tests', () => {
       );
 
       const results = await Promise.all(
-        cities.map((city) => WeatherService.fetchWeatherByCityName(city))
+        cities.map(city => WeatherService.fetchWeatherByCityName(city))
       );
 
       expect(results).toHaveLength(4);

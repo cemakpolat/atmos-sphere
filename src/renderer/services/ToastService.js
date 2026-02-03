@@ -1,9 +1,9 @@
 /**
  * ToastService - Single Responsibility: Handle all toast notification operations
- * 
+ *
  * This service manages the display of toast notifications. It follows the
  * Single Responsibility Principle by focusing solely on notification display.
- * 
+ *
  * Types: 'success', 'error', 'warning', 'info'
  */
 export class ToastService {

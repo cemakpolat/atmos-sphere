@@ -1,6 +1,6 @@
 /**
  * CardManager - Single Responsibility: Handle city card creation and management
- * 
+ *
  * This service manages the creation, updating, and removal of city cards.
  * It follows the Single Responsibility Principle by focusing solely on
  * card-related operations.
@@ -92,7 +92,7 @@ export class CardManager {
     const cloudCover = weather.hourly.cloudcover?.[currentHourIndex];
     const precipitation = weather.hourly.precipitation?.[currentHourIndex] || 0;
     const precipProb = weather.hourly.precipitation_probability?.[currentHourIndex] || 0;
-    
+
     // Air quality data (if available)
     const airQuality = weather.airQuality?.hourly;
     const aqi = airQuality?.european_aqi?.[currentHourIndex];
@@ -283,20 +283,28 @@ export class CardManager {
                   <span class="detail-label">UV Index</span>
                   <span class="detail-value ${uvRec.class}">${uvIndex} (${uvRec.text})</span>
                 </div>
-                ${aqi !== undefined ? `
+                ${
+                  aqi !== undefined
+                    ? `
                 <div class="weather-detail">
                   <i class="fas fa-smog"></i>
                   <span class="detail-label">Air Quality</span>
                   <span class="detail-value aqi-${CardManager.#getAQIClass(aqi)}">${Math.round(aqi)} - ${CardManager.#getAQIDescription(aqi)}</span>
                 </div>
-                ` : ''}
-                ${pm25 !== undefined ? `
+                `
+                    : ''
+                }
+                ${
+                  pm25 !== undefined
+                    ? `
                 <div class="weather-detail">
                   <i class="fas fa-lungs"></i>
                   <span class="detail-label">PM2.5</span>
                   <span class="detail-value">${pm25.toFixed(1)} μg/m³</span>
                 </div>
-                ` : ''}
+                `
+                    : ''
+                }
                 <div class="weather-detail">
                   <i class="fas fa-sunrise"></i>
                   <span class="detail-label">Sunrise</span>
@@ -585,10 +593,7 @@ export class CardManager {
         'data-hourly-temps',
         JSON.stringify(weather.hourly.temperature_2m)
       );
-      forecastContainer.setAttribute(
-        'data-hourly-times',
-        JSON.stringify(weather.hourly.time)
-      );
+      forecastContainer.setAttribute('data-hourly-times', JSON.stringify(weather.hourly.time));
       forecastContainer.innerHTML = ForecastService.getNext6HoursForecast(
         weather.hourly.time,
         weather.hourly.temperature_2m
@@ -664,7 +669,7 @@ export class CardManager {
     allCards.forEach(card => {
       const currentTemp = parseFloat(card.getAttribute('data-current-temp'));
       const tempElement = card.querySelector('.current-temp');
-      
+
       if (tempElement && !isNaN(currentTemp)) {
         const humidityElement = tempElement.querySelector('.humidity-inline');
         const humidityHTML = humidityElement ? humidityElement.outerHTML : '';
@@ -677,7 +682,10 @@ export class CardManager {
         const hourlyTemps = JSON.parse(forecastContainer.getAttribute('data-hourly-temps') || '[]');
         const hourlyTimes = JSON.parse(forecastContainer.getAttribute('data-hourly-times') || '[]');
         if (hourlyTemps.length > 0 && hourlyTimes.length > 0) {
-          forecastContainer.innerHTML = ForecastService.getNext6HoursForecast(hourlyTimes, hourlyTemps);
+          forecastContainer.innerHTML = ForecastService.getNext6HoursForecast(
+            hourlyTimes,
+            hourlyTemps
+          );
         }
       }
 
@@ -726,7 +734,7 @@ export class CardManager {
    */
   static async reloadAllAnimations() {
     const allCards = CardManager.getAllCards();
-    
+
     allCards.forEach(card => {
       if (card._animation) {
         card._animation.stop();

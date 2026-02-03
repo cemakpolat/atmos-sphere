@@ -1,6 +1,6 @@
 /**
  * StorageService - Single Responsibility: Handle all session storage operations
- * 
+ *
  * This service encapsulates session storage access and provides a clean interface
  * for storing and retrieving data. It follows the Single Responsibility Principle
  * by focusing solely on storage operations.
@@ -32,7 +32,7 @@ export class StorageService {
       console.warn('Session storage is not available');
       return false;
     }
-    
+
     try {
       sessionStorage.setItem(key, JSON.stringify(data));
       return true;

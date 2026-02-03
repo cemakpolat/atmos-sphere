@@ -68,7 +68,7 @@ describe('DynamicBackgroundManager', () => {
 
     it('should prioritize severe weather (thunderstorm)', () => {
       const container = document.createElement('div');
-      
+
       // Add clear sky card
       const card1 = document.createElement('div');
       card1.setAttribute('data-weather-code', '0');
@@ -90,7 +90,7 @@ describe('DynamicBackgroundManager', () => {
 
     it('should prioritize snow over rain', () => {
       const container = document.createElement('div');
-      
+
       // Add rain card
       const card1 = document.createElement('div');
       card1.setAttribute('data-weather-code', '61');
@@ -149,14 +149,14 @@ describe('DynamicBackgroundManager', () => {
     it('should apply background gradient to body', () => {
       const testGradient = 'linear-gradient(180deg, #000 0%, #fff 100%)';
       DynamicBackgroundManager.applyBackground(testGradient, false);
-      
+
       expect(document.body.getAttribute('style')).toContain(testGradient);
     });
 
     it('should set background size', () => {
       const testGradient = 'linear-gradient(180deg, #000 0%, #fff 100%)';
       DynamicBackgroundManager.applyBackground(testGradient, false);
-      
+
       expect(document.body.style.backgroundSize).toBe('400% 400%');
     });
   });
@@ -170,26 +170,26 @@ describe('DynamicBackgroundManager', () => {
 
       const originalStyle = document.body.getAttribute('style') || '';
       DynamicBackgroundManager.update(container);
-      
+
       expect(document.body.getAttribute('style') || '').toBe(originalStyle);
     });
 
     it('should update background when enabled', () => {
       DynamicBackgroundManager.enable();
-      
+
       const container = document.createElement('div');
       const card = document.createElement('div');
       card.setAttribute('data-weather-code', '61');
       container.appendChild(card);
 
       DynamicBackgroundManager.update(container);
-      
+
       expect(document.body.getAttribute('style') || '').toContain('linear-gradient');
     });
 
     it('should not update if weather code has not changed', () => {
       DynamicBackgroundManager.enable();
-      
+
       const container = document.createElement('div');
       const card = document.createElement('div');
       card.setAttribute('data-weather-code', '61');
@@ -202,7 +202,7 @@ describe('DynamicBackgroundManager', () => {
       // Second update with same weather
       DynamicBackgroundManager.update(container);
       const secondStyle = document.body.getAttribute('style') || '';
-      
+
       expect(firstStyle).toBe(secondStyle);
     });
   });
@@ -210,14 +210,14 @@ describe('DynamicBackgroundManager', () => {
   describe('reset', () => {
     it('should clear background styles', () => {
       DynamicBackgroundManager.enable();
-      
+
       const container = document.createElement('div');
       const card = document.createElement('div');
       card.setAttribute('data-weather-code', '61');
       container.appendChild(card);
 
       DynamicBackgroundManager.update(container);
-      expect((document.body.getAttribute('style') || '')).toContain('linear-gradient');
+      expect(document.body.getAttribute('style') || '').toContain('linear-gradient');
 
       DynamicBackgroundManager.reset();
       const styleAfterReset = document.body.getAttribute('style') || '';
@@ -227,9 +227,9 @@ describe('DynamicBackgroundManager', () => {
     it('should stop auto-updates', () => {
       DynamicBackgroundManager.enable();
       DynamicBackgroundManager.startAutoUpdate(100);
-      
+
       DynamicBackgroundManager.reset();
-      
+
       // Auto-update should be stopped
       // This is hard to test directly, but we can verify it doesn't throw
       expect(() => {
@@ -256,7 +256,7 @@ describe('DynamicBackgroundManager', () => {
 
       // Should update immediately
       expect(document.body.style.background).toBeDefined();
-      
+
       DynamicBackgroundManager.stopAutoUpdate();
     });
 

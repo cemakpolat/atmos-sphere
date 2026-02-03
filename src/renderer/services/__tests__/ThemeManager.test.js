@@ -65,14 +65,14 @@ describe('ThemeManager', () => {
   describe('apply', () => {
     it('should apply a theme to the document', () => {
       ThemeManager.apply('purple-blue');
-      
+
       expect(document.body.getAttribute('data-theme')).toBe('purple-blue');
     });
 
     it('should apply different themes', () => {
       ThemeManager.apply('ocean-breeze');
       expect(document.body.getAttribute('data-theme')).toBe('ocean-breeze');
-      
+
       ThemeManager.apply('sunset-glow');
       expect(document.body.getAttribute('data-theme')).toBe('sunset-glow');
     });
@@ -86,20 +86,20 @@ describe('ThemeManager', () => {
   describe('applyMode', () => {
     it('should apply light mode', () => {
       ThemeManager.applyMode('light');
-      
+
       expect(document.body.getAttribute('data-mode')).toBe('light');
     });
 
     it('should apply dark mode', () => {
       ThemeManager.applyMode('dark');
-      
+
       expect(document.body.getAttribute('data-mode')).toBe('dark');
     });
 
     it('should toggle between modes correctly', () => {
       ThemeManager.applyMode('light');
       expect(document.body.getAttribute('data-mode')).toBe('light');
-      
+
       ThemeManager.applyMode('dark');
       expect(document.body.getAttribute('data-mode')).toBe('dark');
     });
@@ -109,26 +109,26 @@ describe('ThemeManager', () => {
     it('should toggle mode from light to dark', async () => {
       ThemeManager.applyMode('light');
       SettingsManager.write.mockResolvedValue(true);
-      
+
       await ThemeManager.toggleMode();
-      
+
       expect(document.body.getAttribute('data-mode')).toBe('dark');
     });
 
     it('should toggle mode from dark to light', async () => {
       ThemeManager.applyMode('dark');
       SettingsManager.write.mockResolvedValue(true);
-      
+
       await ThemeManager.toggleMode();
-      
+
       expect(document.body.getAttribute('data-mode')).toBe('light');
     });
 
     it('should persist mode changes to settings', async () => {
       SettingsManager.setThemeMode.mockResolvedValue(true);
-      
+
       await ThemeManager.toggleMode();
-      
+
       expect(SettingsManager.setThemeMode).toHaveBeenCalled();
     });
   });
@@ -137,9 +137,9 @@ describe('ThemeManager', () => {
     it('should save and apply a theme', async () => {
       SettingsManager.setTheme.mockResolvedValue(true);
       ToastService.success.mockReturnValue(true);
-      
+
       await ThemeManager.saveAndApply('forest-mist');
-      
+
       expect(document.body.getAttribute('data-theme')).toBe('forest-mist');
       expect(SettingsManager.setTheme).toHaveBeenCalled();
     });
@@ -147,18 +147,18 @@ describe('ThemeManager', () => {
     it('should show success notification', async () => {
       SettingsManager.write.mockResolvedValue(true);
       ToastService.success.mockReturnValue(true);
-      
+
       await ThemeManager.saveAndApply('midnight-dark');
-      
+
       expect(ToastService.success).toHaveBeenCalled();
     });
 
     it('should handle save errors', async () => {
       SettingsManager.setTheme.mockRejectedValue(new Error('Save failed'));
       ToastService.error.mockReturnValue(true);
-      
+
       await ThemeManager.saveAndApply('midnight-dark');
-      
+
       // Should handle error gracefully
       expect(document.body.getAttribute('data-theme')).toBe('midnight-dark');
     });
@@ -167,13 +167,13 @@ describe('ThemeManager', () => {
   describe('setupThemeOptions', () => {
     it('should set up theme options without errors', () => {
       const container = document.getElementById('theme-grid');
-      
+
       expect(() => ThemeManager.setupThemeOptions()).not.toThrow();
     });
 
     it('should create theme option elements', () => {
       ThemeManager.setupThemeOptions();
-      
+
       const themeOptions = document.querySelectorAll('[data-theme-option]');
       expect(themeOptions.length >= 0).toBe(true);
     });
@@ -183,9 +183,9 @@ describe('ThemeManager', () => {
     it('should switch to next theme', async () => {
       const currentTheme = ThemeManager.currentTheme;
       SettingsManager.write.mockResolvedValue(true);
-      
+
       await ThemeManager.nextTheme();
-      
+
       // Theme should have changed or cycled
       expect(ThemeManager.currentTheme).toBeDefined();
     });
@@ -195,9 +195,9 @@ describe('ThemeManager', () => {
     it('should switch to previous theme', async () => {
       const currentTheme = ThemeManager.currentTheme;
       SettingsManager.write.mockResolvedValue(true);
-      
+
       await ThemeManager.previousTheme();
-      
+
       // Theme should have changed or cycled
       expect(ThemeManager.currentTheme).toBeDefined();
     });
@@ -209,21 +209,21 @@ describe('ThemeManager', () => {
         theme: 'purple-blue',
         themeMode: 'dark',
       };
-      
+
       SettingsManager.getTheme.mockResolvedValue('purple-blue');
       SettingsManager.getThemeMode.mockResolvedValue('dark');
-      
+
       await ThemeManager.loadAndApply();
-      
+
       expect(SettingsManager.getTheme).toHaveBeenCalled();
       expect(document.body.getAttribute('data-theme')).toBe('purple-blue');
     });
 
     it('should apply default if no saved theme', async () => {
       SettingsManager.read.mockResolvedValue({});
-      
+
       await ThemeManager.loadAndApply();
-      
+
       expect(document.body.getAttribute('data-theme')).toBeDefined();
     });
   });
@@ -231,20 +231,20 @@ describe('ThemeManager', () => {
   describe('integration', () => {
     it('should maintain theme consistency', async () => {
       SettingsManager.write.mockResolvedValue(true);
-      
+
       ThemeManager.apply('ocean-breeze');
       expect(document.body.getAttribute('data-theme')).toBe('ocean-breeze');
-      
+
       await ThemeManager.saveAndApply('forest-mist');
       expect(document.body.getAttribute('data-theme')).toBe('forest-mist');
     });
 
     it('should handle mode and theme together', async () => {
       SettingsManager.write.mockResolvedValue(true);
-      
+
       ThemeManager.apply('purple-blue');
       ThemeManager.applyMode('dark');
-      
+
       expect(document.body.getAttribute('data-theme')).toBe('purple-blue');
       expect(document.body.getAttribute('data-mode')).toBe('dark');
     });

@@ -13,10 +13,10 @@ describe('ToastService', () => {
     container = document.createElement('div');
     container.id = 'toast-container';
     document.body.appendChild(container);
-    
+
     // Initialize ToastService
     ToastService.initialize('toast-container');
-    
+
     // Mock timers
     jest.useFakeTimers();
   });
@@ -72,7 +72,7 @@ describe('ToastService', () => {
 
     it('should auto-hide toast after duration', () => {
       jest.useRealTimers(); // Use real timers for this test
-      
+
       ToastService.show('Test message', 'info', 100); // Very short duration
 
       const toast = document.querySelector('.toast');
@@ -163,7 +163,7 @@ describe('ToastService', () => {
     it('should create container if it does not exist', () => {
       // Clear the DOM and all references
       document.body.innerHTML = '';
-      
+
       // Show a toast - should create container automatically
       const toastId = ToastService.show('Test', 'info');
 
@@ -171,7 +171,7 @@ describe('ToastService', () => {
       const container = document.querySelector('#toast-container');
       expect(container).toBeTruthy();
       expect(toastId).toBeTruthy();
-      
+
       // Clean up for next tests
       document.body.innerHTML = '';
       let toastContainer = document.createElement('div');

@@ -1,6 +1,6 @@
 /**
  * GeolocationManager - Single Responsibility: Handle geolocation operations
- * 
+ *
  * This service manages user location detection and reverse geocoding.
  * It follows the Single Responsibility Principle by focusing solely on
  * location-related operations.
@@ -18,7 +18,7 @@ export class GeolocationManager {
     console.log('Requesting current position...');
 
     const coords = await getCurrentPosition();
-    
+
     console.log('=== LOCATION DETECTED ===');
     console.log('Latitude:', coords.latitude);
     console.log('Longitude:', coords.longitude);
@@ -45,7 +45,7 @@ export class GeolocationManager {
    */
   static async getCityFromCoordinates(latitude, longitude, fallbackData = null) {
     ToastService.info('Finding city name from coordinates...', 2000);
-    
+
     let cityInfo = await reverseGeocode(latitude, longitude);
     console.log('City info from reverse geocoding:', cityInfo);
 

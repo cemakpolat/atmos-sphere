@@ -55,7 +55,7 @@ describe('StorageService', () => {
       const result = StorageService.save('key', 'data');
 
       expect(result).toBe(false);
-      
+
       isAvailableSpy.mockRestore();
     });
   });
@@ -64,7 +64,7 @@ describe('StorageService', () => {
     it('should retrieve data from session storage', () => {
       const key = 'testKey';
       const data = { name: 'Test City', temp: 25 };
-      
+
       sessionStorage.setItem(key, JSON.stringify(data));
 
       const result = StorageService.get(key);
@@ -84,7 +84,7 @@ describe('StorageService', () => {
       const result = StorageService.get('key');
 
       expect(result).toBeNull();
-      
+
       isAvailableSpy.mockRestore();
     });
 
@@ -121,7 +121,7 @@ describe('StorageService', () => {
       const result = StorageService.remove('key');
 
       expect(result).toBe(false);
-      
+
       isAvailableSpy.mockRestore();
     });
   });

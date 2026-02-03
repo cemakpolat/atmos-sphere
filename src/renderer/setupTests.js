@@ -21,8 +21,8 @@ console.error = (...args) => {
   if (
     typeof message === 'string' &&
     (message.includes('Error: Could not load') ||
-     message.includes('Encoding not recognized') ||
-     message.includes('Cannot log after tests are done'))
+      message.includes('Encoding not recognized') ||
+      message.includes('Cannot log after tests are done'))
   ) {
     return; // Suppress these errors
   }
