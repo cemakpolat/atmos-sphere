@@ -6,11 +6,7 @@ module.exports = {
     node: true,
     jest: true,
   },
-  extends: [
-    'eslint:recommended',
-    'plugin:import/recommended',
-    'plugin:promise/recommended',
-  ],
+  extends: ['eslint:recommended', 'plugin:import/recommended', 'plugin:promise/recommended'],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',

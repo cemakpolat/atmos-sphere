@@ -2,104 +2,103 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ "main", "develop" ]
+    branches: ['main', 'develop']
   pull_request:
-    branches: [ "main", "develop" ]
-
+    branches: ['main', 'develop']
 
 jobs:
-    build-and-test:
-      runs-on: ubuntu-latest
-      permissions:
-        contents: write # Required to upload release assets
-        issues: write   # Required to create or update issues
-        pull-requests: write # Needed for release-drafter
+  build-and-test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Required to upload release assets
+      issues: write # Required to create or update issues
+      pull-requests: write # Needed for release-drafter
 
-      steps:
-        - name: Checkout code
-          uses: actions/checkout@v4
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-        - name: Set up Node.js
-          uses: actions/setup-node@v4
-          with:
-            node-version: 20
-            cache: 'npm'
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
 
-        - name: Install dependencies
-          run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-        - name: Check code formatting
-          run: npm run format:check
+      - name: Check code formatting
+        run: npm run format:check
 
-        - name: Run linter
-          run: npm run lint || echo "ESLint not configured yet - skipping"
-          continue-on-error: true
+      - name: Run linter
+        run: npm run lint || echo "ESLint not configured yet - skipping"
+        continue-on-error: true
 
-        - name: Security audit
-          run: npm audit --audit-level=moderate
-          continue-on-error: true
+      - name: Security audit
+        run: npm audit --audit-level=moderate
+        continue-on-error: true
 
-        - name: Run tests
-          run: npm test
-          continue-on-error: true
+      - name: Run tests
+        run: npm test
+        continue-on-error: true
 
-        - name: Run build
-          env:
-            GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          run: |
-            npm run build
+      - name: Run build
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          npm run build
 
-        - name: Upload build artifacts
-          uses: actions/upload-artifact@v4
-          with:
-            name: build-artifacts
-            path: dist
-            retention-days: 7
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifacts
+          path: dist
+          retention-days: 7
 
-        - name: Add success label (if tests pass and is a PR)
-          if: success() && github.event_name == 'pull_request'
-          uses: actions/github-script@v6
-          with:
-            script: |
-              github.rest.issues.addLabels({
-                issue_number: context.issue.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                labels: ['build: success']
-              })
+      - name: Add success label (if tests pass and is a PR)
+        if: success() && github.event_name == 'pull_request'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.addLabels({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ['build: success']
+            })
 
-        - name: Notify success (if tests pass and is a PR)
-          if: success() && github.event_name == 'pull_request'
-          uses: actions/github-script@v6
-          with:
-            script: |
-              github.rest.issues.createComment({
-                issue_number: context.issue.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                body: '🚀 Build succeeded!'
-              })
+      - name: Notify success (if tests pass and is a PR)
+        if: success() && github.event_name == 'pull_request'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '🚀 Build succeeded!'
+            })
 
-        - name: Add failure label (if tests fail and is a PR)
-          if: failure() && github.event_name == 'pull_request'
-          uses: actions/github-script@v6
-          with:
-            script: |
-              github.rest.issues.addLabels({
-                issue_number: context.issue.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                labels: ['build: failed']
-              })
+      - name: Add failure label (if tests fail and is a PR)
+        if: failure() && github.event_name == 'pull_request'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.addLabels({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ['build: failed']
+            })
 
-        - name: Notify failure (if tests fail and is a PR)
-          if: failure() && github.event_name == 'pull_request'
-          uses: actions/github-script@v6
-          with:
-            script: |
-              github.rest.issues.createComment({
-                issue_number: context.issue.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                body: '❌ Build failed. Please check the logs.'
-              })
+      - name: Notify failure (if tests fail and is a PR)
+        if: failure() && github.event_name == 'pull_request'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '❌ Build failed. Please check the logs.'
+            })
