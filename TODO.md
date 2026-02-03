@@ -11,9 +11,11 @@ This document contains prioritized feature ideas and improvements for the atmos 
 ## 🟡 Medium Priority Features
 
 ### 1. Export/Import Settings
+
 **Priority:** Medium
 **Complexity:** Low
 **Description:** Backup and restore app configuration
+
 - [ ] Export settings to JSON file
 - [ ] Import settings from file
 - [ ] Include cities, preferences, theme
@@ -27,9 +29,11 @@ This document contains prioritized feature ideas and improvements for the atmos 
 ## 🟢 Low Priority / Nice-to-Have
 
 ### 1. Voice Commands (Experimental)
+
 **Priority:** Low
 **Complexity:** High
 **Description:** Voice-activated weather queries
+
 - [ ] "What's the weather in [city]?"
 - [ ] "Refresh all cities"
 - [ ] "Switch to Fahrenheit"
@@ -42,9 +46,11 @@ This document contains prioritized feature ideas and improvements for the atmos 
 ---
 
 ### 2. Weather-Based Recommendations
+
 **Priority:** Low
 **Complexity:** Medium
 **Description:** Smart suggestions based on weather
+
 - [ ] "Bring an umbrella today"
 - [ ] "Good day for outdoor activities"
 - [ ] "UV protection recommended"
@@ -57,9 +63,11 @@ This document contains prioritized feature ideas and improvements for the atmos 
 ---
 
 ### 3. Multi-Language Support (i18n)
+
 **Priority:** Low
 **Complexity:** High
 **Description:** Internationalization for global users
+
 - [ ] i18n framework setup
 - [ ] Language selector in settings
 - [ ] Translate UI labels
@@ -74,9 +82,11 @@ This document contains prioritized feature ideas and improvements for the atmos 
 ---
 
 ### 4. Offline Mode & Data Caching
+
 **Priority:** Low
 **Complexity:** High
 **Description:** Work without internet connection
+
 - [ ] Cache last fetched weather data
 - [ ] IndexedDB or localStorage
 - [ ] Offline indicator in UI
@@ -91,9 +101,11 @@ This document contains prioritized feature ideas and improvements for the atmos 
 ## 🛠️ Technical Improvements
 
 ### 1. TypeScript Migration
+
 **Priority:** Medium
 **Complexity:** High
 **Description:** Convert codebase to TypeScript for type safety
+
 - [ ] Install TypeScript and type definitions
 - [ ] Configure tsconfig.json
 - [ ] Migrate main.js to .ts
@@ -106,10 +118,12 @@ This document contains prioritized feature ideas and improvements for the atmos 
 ---
 
 ### 2. Unit Test Coverage Improvement
+
 **Status:** ⚠️ IN PROGRESS (86% for animations, 100% for utils)
 **Priority:** Medium
 **Complexity:** Medium
 **Description:** Increase test coverage to 80%+
+
 - [ ] Fix renderer.test.js (needs refactoring)
 - [ ] Fix WeatherAnimationManager tests (5 failures)
 - [ ] Fix themeSystem tests (2 failures)
@@ -124,9 +138,11 @@ This document contains prioritized feature ideas and improvements for the atmos 
 ---
 
 ### 3. Error Logging & Monitoring
+
 **Priority:** Medium
 **Complexity:** Medium
 **Description:** Better debugging and error tracking
+
 - [ ] Integrate winston or pino for logging
 - [ ] Log levels: debug, info, warn, error
 - [ ] Rotate log files
@@ -140,9 +156,11 @@ This document contains prioritized feature ideas and improvements for the atmos 
 ---
 
 ### 4. Performance Optimization
+
 **Priority:** Low
 **Complexity:** Medium
 **Description:** Improve app startup and runtime performance
+
 - [ ] Code splitting
 - [ ] Lazy loading for heavy components
 - [ ] Virtual scrolling for many cities
@@ -153,9 +171,11 @@ This document contains prioritized feature ideas and improvements for the atmos 
 ---
 
 ### 5. Accessibility (a11y) Improvements
+
 **Priority:** Medium
 **Complexity:** Medium
 **Description:** Make app usable for everyone
+
 - [ ] Keyboard navigation for all features
 - [ ] Screen reader support (ARIA labels)
 - [ ] High contrast mode
@@ -169,9 +189,11 @@ This document contains prioritized feature ideas and improvements for the atmos 
 ---
 
 ### 6. Auto-Update System
+
 **Priority:** Medium
 **Complexity:** Medium
 **Description:** Automatic app updates
+
 - [ ] Integrate electron-updater
 - [ ] Check for updates on startup
 - [ ] Download in background
@@ -185,9 +207,11 @@ This document contains prioritized feature ideas and improvements for the atmos 
 ---
 
 ### 7. Code Refactoring
+
 **Priority:** Medium
 **Complexity:** Medium
 **Description:** Improve code organization and maintainability
+
 - [ ] Split renderer.js into modules:
   - `services/weatherApi.js`
   - `services/storageService.js`
@@ -206,9 +230,11 @@ This document contains prioritized feature ideas and improvements for the atmos 
 ## 📱 Platform-Specific Features
 
 ### 1. macOS Menu Bar Integration
+
 **Priority:** Low
 **Complexity:** Low
 **Description:** macOS-specific menu bar features
+
 - [ ] Native macOS menu structure
 - [ ] Preferences in menu
 - [ ] About window
@@ -220,9 +246,11 @@ This document contains prioritized feature ideas and improvements for the atmos 
 ---
 
 ### 2. Windows Taskbar Integration
+
 **Priority:** Low
 **Complexity:** Low
 **Description:** Windows-specific taskbar features
+
 - [ ] Progress bar for refresh
 - [ ] Jump list for recent cities
 - [ ] Thumbnail toolbar buttons
@@ -235,9 +263,11 @@ This document contains prioritized feature ideas and improvements for the atmos 
 ## 🎨 UI/UX Enhancements
 
 ### 1. Animated Weather Icons
+
 **Priority:** Low
 **Complexity:** Medium
 **Description:** Replace static icons with animations
+
 - [ ] Lottie animations or CSS animations
 - [ ] Animated sun, clouds, rain, snow, lightning
 - [ ] Smooth transitions between states
@@ -250,9 +280,11 @@ This document contains prioritized feature ideas and improvements for the atmos 
 ---
 
 ### 2. City Photos/Backgrounds
+
 **Priority:** Low
 **Complexity:** Medium
 **Description:** Show city photos on cards
+
 - [ ] Integrate Unsplash or Pexels API
 - [ ] Cache images locally
 - [ ] Fallback to gradient
@@ -264,9 +296,11 @@ This document contains prioritized feature ideas and improvements for the atmos 
 ---
 
 ### 3. Custom City Icons
+
 **Priority:** Low
 **Complexity:** Low
 **Description:** Let users set custom icons per city
+
 - [ ] Icon picker UI
 - [ ] Upload custom image
 - [ ] Icon library (flags, landmarks)
@@ -280,9 +314,11 @@ This document contains prioritized feature ideas and improvements for the atmos 
 ## 🔐 Security & Privacy
 
 ### 1. API Key Management
+
 **Priority:** High
 **Complexity:** Low
 **Description:** Secure API key storage (if using paid APIs)
+
 - [ ] Environment variables
 - [ ] Encrypted storage
 - [ ] User-provided API keys
@@ -294,9 +330,11 @@ This document contains prioritized feature ideas and improvements for the atmos 
 ---
 
 ### 2. Privacy Mode
+
 **Priority:** Low
 **Complexity:** Low
 **Description:** No data collection/tracking option
+
 - [ ] Disable analytics (if added)
 - [ ] Clear all data option
 - [ ] Privacy policy display
@@ -308,9 +346,11 @@ This document contains prioritized feature ideas and improvements for the atmos 
 ## 📦 Distribution & Deployment
 
 ### 1. Windows Store Publishing
+
 **Priority:** Low
 **Complexity:** Medium
 **Description:** Publish to Microsoft Store
+
 - [ ] Create Windows Store listing
 - [ ] Generate app package
 - [ ] Sign with certificate
@@ -320,9 +360,11 @@ This document contains prioritized feature ideas and improvements for the atmos 
 ---
 
 ### 2. Mac App Store Publishing
+
 **Priority:** Low
 **Complexity:** High
 **Description:** Publish to Mac App Store
+
 - [ ] Apple Developer Account
 - [ ] Code signing and notarization
 - [ ] App sandbox requirements
@@ -332,9 +374,11 @@ This document contains prioritized feature ideas and improvements for the atmos 
 ---
 
 ### 3. Linux Package Managers
+
 **Priority:** Low
 **Complexity:** Medium
 **Description:** Distribution via apt, snap, flatpak
+
 - [ ] Create .deb package
 - [ ] Snap package configuration
 - [ ] Flatpak manifest
@@ -346,9 +390,11 @@ This document contains prioritized feature ideas and improvements for the atmos 
 ## 🧪 Experimental Ideas
 
 ### 1. AR Weather Visualization (Future)
+
 **Priority:** Very Low
 **Complexity:** Very High
 **Description:** Augmented reality weather view
+
 - [ ] 3D weather models
 - [ ] AR overlay on camera
 - [ ] Interactive elements
@@ -357,9 +403,11 @@ This document contains prioritized feature ideas and improvements for the atmos 
 ---
 
 ### 2. AI Weather Predictions
+
 **Priority:** Very Low
 **Complexity:** Very High
 **Description:** ML-based weather forecasting
+
 - [ ] Train prediction model
 - [ ] Compare with API data
 - [ ] Accuracy metrics
@@ -368,9 +416,11 @@ This document contains prioritized feature ideas and improvements for the atmos 
 ---
 
 ### 3. Weather Widgets for Desktop
+
 **Priority:** Low
 **Complexity:** Medium
 **Description:** Standalone mini widgets
+
 - [ ] Floating mini window
 - [ ] Always on top
 - [ ] Transparent background
@@ -382,15 +432,18 @@ This document contains prioritized feature ideas and improvements for the atmos 
 ## 📊 Priority Summary
 
 **Short-term (Sprint 1-3):**
+
 - Complete test coverage improvements
 - TypeScript migration
 
 **Medium-term (Sprint 4-8):**
+
 - Export/Import settings
 - Auto-updates
 - Code refactoring
 
 **Long-term (Future):**
+
 - Multi-language support
 - Platform store publishing
 - Advanced features (AR, AI)
@@ -401,17 +454,20 @@ This document contains prioritized feature ideas and improvements for the atmos 
 ## 🎯 Goals by Quarter
 
 ### Q2 2025
+
 - [ ] Complete test coverage improvements
 - [ ] TypeScript migration
 - [ ] Export/Import settings
 
 ### Q3 2025
+
 - [ ] Auto-update system
 - [ ] Performance optimizations
 - [ ] Accessibility improvements
 - [ ] Code refactoring
 
 ### Q4 2025
+
 - [ ] Platform store submissions
 - [ ] Advanced features
 - [ ] Code refactoring complete
@@ -434,6 +490,7 @@ This document contains prioritized feature ideas and improvements for the atmos 
 **Status:** Active Development
 
 **Recent Updates (2026-01-05):**
+
 - 🗑️ Removed all completed features section - keeping only pending work
 - 🗑️ Removed unnecessary features: Search history, Weather comparison view, Share weather as image, System tray integration
 - 📝 Cleaned up quarterly goals - removed Q1 2025 completed items
